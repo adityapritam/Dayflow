@@ -74,6 +74,99 @@ export const PayrollPage = () => {
     }
   };
 
+  const handleDownloadPayslip = (p) => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      alert('Please allow popups to download payslips.');
+      return;
+    }
+    const htmlContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Payslip_Month_${p.month}_${p.year}</title>
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 40px; color: #171816; background-color: #FFFFFF; }
+            .header { display: flex; justify-content: space-between; border-bottom: 2px solid #2D4A3E; padding-bottom: 20px; margin-bottom: 30px; }
+            .logo { font-size: 24px; font-weight: 700; color: #2D4A3E; }
+            .title { text-align: right; }
+            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+            .section-title { font-weight: 700; text-transform: uppercase; font-size: 12px; color: #888A83; letter-spacing: 0.05em; border-bottom: 1px solid #E6E4DD; padding-bottom: 5px; margin-bottom: 10px; }
+            .payroll-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+            .payroll-table th, .payroll-table td { padding: 12px; border-bottom: 1px solid #E6E4DD; text-align: left; }
+            .payroll-table th { font-weight: 700; text-transform: uppercase; font-size: 11px; color: #565852; background-color: #F5F4EE; }
+            .total-row { font-size: 18px; font-weight: 700; color: #2D4A3E; background-color: #EBF2EE; }
+            .footer { text-align: center; margin-top: 50px; font-size: 11px; color: #888A83; border-top: 1px solid #E6E4DD; padding-top: 20px; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div class="logo">Dayflow HRMS</div>
+            <div class="title">
+              <h2 style="margin: 0; font-size: 20px;">MONTHLY PAYSLIP</h2>
+              <p style="margin: 5px 0 0 0; font-size: 12px; color: #888A83;">Period: Month ${p.month}, ${p.year}</p>
+            </div>
+          </div>
+          
+          <div class="grid">
+            <div>
+              <div class="section-title">Employee Details</div>
+              <strong>${p.employee?.firstName || 'Staff'} ${p.employee?.lastName || 'Member'}</strong><br/>
+              Job Title: ${p.employee?.jobTitle || 'Associate'}<br/>
+              Department: ${p.employee?.department || 'Operations'}<br/>
+              Employee ID: ${p.employee?.user?.employeeId || 'N/A'}
+            </div>
+            <div style="text-align: right;">
+              <div class="section-title">Payment Info</div>
+              Payment Date: ${p.paymentDate || 'Pending'}<br/>
+              Status: <span style="font-weight: 700; color: ${p.status === 'PAID' ? '#059669' : '#D97706'}">${p.status}</span><br/>
+              Reference ID: ${p.id.substring(0, 8).toUpperCase()}
+            </div>
+          </div>
+
+          <table class="payroll-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th style="text-align: right;">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Monthly Base Pay</td>
+                <td style="text-align: right;">$${Math.round(p.baseSalary).toLocaleString()}</td>
+              </tr>
+              <tr>
+                <td>Allowances</td>
+                <td style="text-align: right; color: #059669;">+$${Math.round(p.allowances).toLocaleString()}</td>
+              </tr>
+              <tr>
+                <td>Deductions</td>
+                <td style="text-align: right; color: #DC2626;">-$${Math.round(p.deductions).toLocaleString()}</td>
+              </tr>
+              <tr class="total-row">
+                <td>Net Disbursed Pay</td>
+                <td style="text-align: right;">$${Math.round(p.netSalary).toLocaleString()}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="footer">
+            This is a system generated document. For verification or inquiries, contact HR department.
+          </div>
+
+          <script>
+            window.onload = function() {
+              window.print();
+            }
+          </script>
+        </body>
+      </html>
+    `;
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {/* Salary Breakdown Summary Card for Employee */}
@@ -258,7 +351,7 @@ export const PayrollPage = () => {
                       </div>
                     ) : (
                       <button
-                        onClick={() => alert(`Downloading Payslip for Period ${p.month}/${p.year}`)}
+                        onClick={() => handleDownloadPayslip(p)}
                         className="btn-secondary"
                         style={{ padding: '0.35rem 0.625rem', fontSize: '0.75rem' }}
                       >
