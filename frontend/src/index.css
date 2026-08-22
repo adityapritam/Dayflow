@@ -180,7 +180,7 @@ a {
 
 .btn-secondary:hover {
   background-color: var(--bg-subtle);
-  border-color: #D5D3CA;
+  border-color: var(--border-color);
 }
 
 .btn-danger {
@@ -267,7 +267,7 @@ a {
 }
 
 .custom-table tr:hover td {
-  background-color: #FAFAF8;
+  background-color: var(--bg-subtle);
 }
 
 /* Modal Overlay */
@@ -369,8 +369,8 @@ a {
 }
 
 .checklist-item:hover {
-  background: #FAF9F6;
-  border-color: #D5D3CA;
+  background: var(--bg-subtle);
+  border-color: var(--border-color);
   transform: translateX(4px);
 }
 
