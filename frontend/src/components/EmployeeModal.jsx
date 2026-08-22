@@ -192,7 +192,7 @@ export const EmployeeModal = ({ employee, isOpen, onClose, onSuccess }) => {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem' }}>
             <div className="form-group">
               <label className="form-label">Phone Number</label>
               <input
@@ -213,6 +213,18 @@ export const EmployeeModal = ({ employee, isOpen, onClose, onSuccess }) => {
               >
                 <option value="EMPLOYEE">Employee</option>
                 <option value="ADMIN">HR Admin / Officer</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Employment Status</label>
+              <select
+                value={formData.status}
+                onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                className="form-select"
+              >
+                <option value="ACTIVE">Active</option>
+                <option value="INACTIVE">Inactive</option>
               </select>
             </div>
           </div>

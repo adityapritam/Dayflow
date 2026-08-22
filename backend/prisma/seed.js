@@ -79,6 +79,7 @@ async function main() {
       allowances: 4000,
       deductions: 3500,
       netSalary: 88500,
+      status: 'INACTIVE',
     },
     {
       employeeId: 'EMP-004',
@@ -111,6 +112,7 @@ async function main() {
       allowances: 3000,
       deductions: 3000,
       netSalary: 75000,
+      status: 'INACTIVE',
     },
   ];
 
@@ -137,7 +139,7 @@ async function main() {
             allowances: emp.allowances,
             deductions: emp.deductions,
             netSalary: emp.netSalary,
-            status: 'ACTIVE',
+            status: emp.status || 'ACTIVE',
           },
         },
       },
