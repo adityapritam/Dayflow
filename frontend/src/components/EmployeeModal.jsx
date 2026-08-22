@@ -142,6 +142,7 @@ export const EmployeeModal = ({ employee, isOpen, onClose, onSuccess }) => {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="form-input"
                 disabled={!!employee}
+                autoComplete="off"
                 required
               />
             </div>
@@ -154,6 +155,7 @@ export const EmployeeModal = ({ employee, isOpen, onClose, onSuccess }) => {
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   className="form-input"
+                  autoComplete="new-password"
                   required
                 />
               </div>
@@ -216,13 +218,13 @@ export const EmployeeModal = ({ employee, isOpen, onClose, onSuccess }) => {
           </div>
 
           <div className="form-group">
-            <label className="form-label">Office Address</label>
+            <label className="form-label">Residential Address</label>
             <input
               type="text"
               value={formData.address}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
               className="form-input"
-              placeholder="Full address..."
+              placeholder="Full residential address..."
             />
           </div>
 
