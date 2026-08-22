@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { UserPlus, AlertCircle, Mail, Key, User, Building, Briefcase } from 'lucide-react';
+import { UserPlus, AlertCircle, Mail, Key, User, Building, Briefcase, ArrowLeft } from 'lucide-react';
 
 export const Register = ({ onNavigateLogin, onNavigateVerify, onBackToLanding }) => {
   const { registerUser } = useAuth();
@@ -47,8 +47,34 @@ export const Register = ({ onNavigateLogin, onNavigateVerify, onBackToLanding })
         justifyContent: 'center',
         backgroundColor: '#FBFBF9',
         padding: '2rem 1rem',
+        position: 'relative',
       }}
     >
+      {onBackToLanding && (
+        <button
+          onClick={onBackToLanding}
+          style={{
+            position: 'absolute',
+            top: '2rem',
+            left: '2rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            backgroundColor: '#FFFFFF',
+            border: '1px solid #E6E4DD',
+            borderRadius: '8px',
+            padding: '0.5rem 1rem',
+            fontSize: '0.875rem',
+            fontWeight: '600',
+            color: '#2D4A3E',
+            boxShadow: 'var(--shadow-sm)',
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+          }}
+        >
+          <ArrowLeft size={16} /> Back to Home
+        </button>
+      )}
       <div style={{ width: '100%', maxWidth: '520px' }}>
         <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
           <div
@@ -182,26 +208,14 @@ export const Register = ({ onNavigateLogin, onNavigateVerify, onBackToLanding })
           </form>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#565852', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <div>
-            Already registered?{' '}
-            <button
-              onClick={onNavigateLogin}
-              style={{ color: '#2D4A3E', fontWeight: '600', textDecoration: 'underline' }}
-            >
-              Sign In
-            </button>
-          </div>
-          {onBackToLanding && (
-            <div>
-              <button
-                onClick={onBackToLanding}
-                style={{ color: '#888A83', fontSize: '0.8125rem', fontWeight: '600', marginTop: '0.25rem' }}
-              >
-                ← Back to Home Page
-              </button>
-            </div>
-          )}
+        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#565852' }}>
+          Already registered?{' '}
+          <button
+            onClick={onNavigateLogin}
+            style={{ color: '#2D4A3E', fontWeight: '600', textDecoration: 'underline' }}
+          >
+            Sign In
+          </button>
         </div>
       </div>
     </div>

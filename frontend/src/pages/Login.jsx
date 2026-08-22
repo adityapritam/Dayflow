@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { LogIn, AlertCircle, Key, Mail, Sparkles, User, ShieldCheck } from 'lucide-react';
+import { LogIn, AlertCircle, Key, Mail, Sparkles, User, ShieldCheck, ArrowLeft } from 'lucide-react';
 
 export const Login = ({ onNavigateRegister, onNavigateVerify, onBackToLanding }) => {
   const { loginUser } = useAuth();
@@ -46,8 +46,34 @@ export const Login = ({ onNavigateRegister, onNavigateVerify, onBackToLanding })
         justifyContent: 'center',
         backgroundColor: '#FBFBF9',
         padding: '2rem 1rem',
+        position: 'relative',
       }}
     >
+      {onBackToLanding && (
+        <button
+          onClick={onBackToLanding}
+          style={{
+            position: 'absolute',
+            top: '2rem',
+            left: '2rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            backgroundColor: '#FFFFFF',
+            border: '1px solid #E6E4DD',
+            borderRadius: '8px',
+            padding: '0.5rem 1rem',
+            fontSize: '0.875rem',
+            fontWeight: '600',
+            color: '#2D4A3E',
+            boxShadow: 'var(--shadow-sm)',
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+          }}
+        >
+          <ArrowLeft size={16} /> Back to Home
+        </button>
+      )}
       <div style={{ width: '100%', maxWidth: '440px' }}>
         {/* Brand Banner */}
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
@@ -182,26 +208,14 @@ export const Login = ({ onNavigateRegister, onNavigateVerify, onBackToLanding })
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#565852', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <div>
-            Don't have an employee account?{' '}
-            <button
-              onClick={onNavigateRegister}
-              style={{ color: '#2D4A3E', fontWeight: '600', textDecoration: 'underline' }}
-            >
-              Create Account
-            </button>
-          </div>
-          {onBackToLanding && (
-            <div>
-              <button
-                onClick={onBackToLanding}
-                style={{ color: '#888A83', fontSize: '0.8125rem', fontWeight: '600', marginTop: '0.25rem' }}
-              >
-                ← Back to Home Page
-              </button>
-            </div>
-          )}
+        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#565852' }}>
+          Don't have an employee account?{' '}
+          <button
+            onClick={onNavigateRegister}
+            style={{ color: '#2D4A3E', fontWeight: '600', textDecoration: 'underline' }}
+          >
+            Create Account
+          </button>
         </div>
       </div>
     </div>

@@ -219,7 +219,7 @@ export const LandingPage = ({ onLogin, onRegister }) => {
         gap: '1.5rem',
         boxShadow: 'var(--shadow-md)'
       }}>
-        <h2 style={{ fontSize: '2.5rem', fontWeight: '800', margin: 0, letterSpacing: '-0.03em' }}>Ready to streamline your team's workflow?</h2>
+        <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#FFFFFF', margin: 0, letterSpacing: '-0.03em' }}>Ready to streamline your team's workflow?</h2>
         <p style={{ fontSize: '1.0625rem', color: 'rgba(255, 255, 255, 0.75)', maxWidth: '550px', margin: 0 }}>Register a new workspace or log in with your credentials to explore Dayflow HRMS.</p>
         <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
           <button onClick={onRegister} className="btn-primary" style={{ backgroundColor: '#FFFFFF', color: '#2D4A3E', border: '1px solid #FFFFFF', padding: '0.75rem 2rem' }}>
