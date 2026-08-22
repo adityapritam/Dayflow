@@ -325,8 +325,8 @@ export const AdminDashboard = ({ setActiveTab }) => {
                 <div
                   key={leave.id}
                   style={{
-                    backgroundColor: '#F7F6F2',
-                    border: '1px solid #E6E4DD',
+                    backgroundColor: 'var(--bg-main)',
+                    border: '1px solid var(--border-color)',
                     borderRadius: '10px',
                     padding: '1rem 1.25rem',
                     display: 'flex',
