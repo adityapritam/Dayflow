@@ -159,7 +159,6 @@ export const checkOut = async (req, res) => {
   }
 };
 
-// Get my attendance history
 export const getMyAttendance = async (req, res) => {
   try {
     const employeeId = req.user.profile?.id;
@@ -167,10 +166,20 @@ export const getMyAttendance = async (req, res) => {
       return res.status(400).json({ error: 'No employee profile associated with user account.' });
     }
 
+    const { startDate, endDate } = req.query;
+    let whereClause = { employeeId };
+
+    if (startDate && endDate) {
+      whereClause.date = {
+        gte: startDate,
+        lte: endDate,
+      };
+    }
+
     const attendances = await prisma.attendance.findMany({
-      where: { employeeId },
+      where: whereClause,
       orderBy: { date: 'desc' },
-      take: 60,
+      take: 100,
     });
 
     res.status(200).json({ attendances });
@@ -179,16 +188,21 @@ export const getMyAttendance = async (req, res) => {
   }
 };
 
-// Admin: Get all attendance records across all employees
 export const getAllAttendance = async (req, res) => {
   try {
-    const { date, employeeId, status } = req.query;
+    const { date, startDate, endDate, employeeId, status } = req.query;
 
     let whereClause = {};
 
     if (date) {
       whereClause.date = date;
+    } else if (startDate && endDate) {
+      whereClause.date = {
+        gte: startDate,
+        lte: endDate,
+      };
     }
+
     if (employeeId) {
       whereClause.employeeId = employeeId;
     }

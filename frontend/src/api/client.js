@@ -49,7 +49,7 @@ export const api = {
   getTodayAttendance: () => fetchAPI('/attendance/today'),
   checkIn: () => fetchAPI('/attendance/check-in', { method: 'POST' }),
   checkOut: () => fetchAPI('/attendance/check-out', { method: 'POST' }),
-  getMyAttendance: () => fetchAPI('/attendance/my'),
+  getMyAttendance: (params = '') => fetchAPI(`/attendance/my${params}`),
   getAllAttendance: (params = '') => fetchAPI(`/attendance/all${params}`),
   updateAttendanceStatus: (id, payload) => fetchAPI(`/attendance/${id}`, { method: 'PUT', body: payload }),
 
