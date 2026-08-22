@@ -53,18 +53,19 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
     <aside
       style={{
         width: '260px',
-        backgroundColor: '#FFFFFF',
-        borderRight: '1px solid #E6E4DD',
+        backgroundColor: 'var(--bg-surface)',
+        borderRight: '1px solid var(--border-color)',
         display: 'flex',
         flexDirection: 'column',
         height: '100vh',
         position: 'sticky',
         top: 0,
         zIndex: 50,
+        transition: 'background-color 0.2s, border-color 0.2s'
       }}
     >
       {/* Brand Header */}
-      <div style={{ padding: '1.5rem 1.5rem 1rem 1.5rem', borderBottom: '1px solid #F5F4EE' }}>
+      <div style={{ padding: '1.5rem 1.5rem 1rem 1.5rem', borderBottom: '1px solid var(--border-color)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
           <div
             style={{
@@ -83,10 +84,10 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
             D
           </div>
           <div>
-            <div style={{ fontSize: '1.125rem', fontWeight: '700', color: '#171816', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
+            <div style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-primary)', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
               Dayflow
             </div>
-            <div style={{ fontSize: '0.6875rem', color: '#888A83', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+            <div style={{ fontSize: '0.6875rem', color: 'var(--text-muted)', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               Human Capital Platform
             </div>
           </div>
@@ -97,7 +98,7 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
           <div
             style={{
               marginTop: '1.25rem',
-              backgroundColor: '#F5F4EE',
+              backgroundColor: 'var(--bg-subtle)',
               padding: '0.25rem',
               borderRadius: '8px',
               display: 'grid',
@@ -115,8 +116,8 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
                 borderRadius: '6px',
                 fontSize: '0.75rem',
                 fontWeight: '600',
-                backgroundColor: activeRoleView === 'ADMIN' ? '#FFFFFF' : 'transparent',
-                color: activeRoleView === 'ADMIN' ? '#2D4A3E' : '#565852',
+                backgroundColor: activeRoleView === 'ADMIN' ? 'var(--bg-surface)' : 'transparent',
+                color: activeRoleView === 'ADMIN' ? 'var(--color-primary)' : 'var(--text-secondary)',
                 boxShadow: activeRoleView === 'ADMIN' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none',
                 display: 'flex',
                 alignItems: 'center',
@@ -137,8 +138,8 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
                 borderRadius: '6px',
                 fontSize: '0.75rem',
                 fontWeight: '600',
-                backgroundColor: activeRoleView === 'EMPLOYEE' ? '#FFFFFF' : 'transparent',
-                color: activeRoleView === 'EMPLOYEE' ? '#2D4A3E' : '#565852',
+                backgroundColor: activeRoleView === 'EMPLOYEE' ? 'var(--bg-surface)' : 'transparent',
+                color: activeRoleView === 'EMPLOYEE' ? 'var(--color-primary)' : 'var(--text-secondary)',
                 boxShadow: activeRoleView === 'EMPLOYEE' ? '0 1px 2px rgba(0,0,0,0.05)' : 'none',
                 display: 'flex',
                 alignItems: 'center',
@@ -204,12 +205,12 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
                     borderRadius: '8px',
                     fontSize: '0.875rem',
                     fontWeight: isActive ? '600' : '500',
-                    backgroundColor: isActive ? '#EBF2EE' : 'transparent',
-                    color: isActive ? '#2D4A3E' : '#565852',
+                    backgroundColor: isActive ? 'var(--bg-accent-light)' : 'transparent',
+                    color: isActive ? 'var(--color-primary)' : 'var(--text-secondary)',
                     transition: 'all 0.15s ease',
                   }}
                 >
-                  <Icon size={18} color={isActive ? '#2D4A3E' : '#888A83'} />
+                  <Icon size={18} color={isActive ? 'var(--color-primary)' : 'var(--text-muted)'} />
                   {item.label}
                 </button>
               </li>
@@ -219,24 +220,24 @@ export const Sidebar = ({ activeTab, setActiveTab }) => {
       </nav>
 
       {/* User Footer */}
-      <div style={{ padding: '1rem 1.25rem', borderTop: '1px solid #E6E4DD', backgroundColor: '#FBFBF9' }}>
+      <div style={{ padding: '1rem 1.25rem', borderTop: '1px solid var(--border-color)', backgroundColor: 'var(--bg-main)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <img
             src={displayUser?.avatarUrl || 'https://api.dicebear.com/7.x/avataaars/svg?seed=User'}
             alt="Avatar"
-            style={{ width: '38px', height: '38px', borderRadius: '50%', border: '1px solid #D5D3CA', objectFit: 'cover' }}
+            style={{ width: '38px', height: '38px', borderRadius: '50%', border: '1px solid var(--border-color)', objectFit: 'cover' }}
           />
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: '0.875rem', fontWeight: '600', color: '#171816', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <div style={{ fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
               {displayUser?.firstName} {displayUser?.lastName}
             </div>
-            <div style={{ fontSize: '0.75rem', color: '#888A83' }}>
-              {user?.employeeId} • <span style={{ textTransform: 'uppercase', fontWeight: '600', color: '#2D4A3E', fontSize: '0.6875rem' }}>{displayRole}</span>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+              {user?.employeeId} • <span style={{ textTransform: 'uppercase', fontWeight: '600', color: 'var(--color-primary)', fontSize: '0.6875rem' }}>{displayRole}</span>
             </div>
           </div>
           <button
             onClick={logout}
-            style={{ color: '#888A83', padding: '0.35rem', borderRadius: '6px' }}
+            style={{ color: 'var(--text-muted)', padding: '0.35rem', borderRadius: '6px' }}
             title="Sign Out"
           >
             <LogOut size={18} />
