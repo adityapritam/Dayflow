@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import prisma from '../config/db.js';
+import { admin, useFirebase } from '../config/firebase.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dayflow_super_secret_jwt_key_2026';
 
@@ -11,12 +12,29 @@ export const authenticateToken = async (req, res, next) => {
     }
 
     const token = authHeader.split(' ')[1];
-    const decoded = jwt.verify(token, JWT_SECRET);
+    let user = null;
 
-    const user = await prisma.user.findUnique({
-      where: { id: decoded.id },
-      include: { profile: true },
-    });
+    // Check if Firebase is active and try verifying ID Token
+    if (useFirebase) {
+      try {
+        const decodedFirebase = await admin.auth().verifyIdToken(token);
+        user = await prisma.user.findUnique({
+          where: { email: decodedFirebase.email },
+          include: { profile: true },
+        });
+      } catch (fbError) {
+        // If Firebase token fails (expired or invalid), fallback to local JWT check
+      }
+    }
+
+    // Fallback/Standard JWT validation if user is not resolved yet
+    if (!user) {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      user = await prisma.user.findUnique({
+        where: { id: decoded.id },
+        include: { profile: true },
+      });
+    }
 
     if (!user) {
       return res.status(401).json({ error: 'Invalid or expired token. User no longer exists.' });
