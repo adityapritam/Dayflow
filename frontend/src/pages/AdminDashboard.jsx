@@ -74,7 +74,6 @@ export const AdminDashboard = ({ setActiveTab }) => {
     };
 
     setAnnouncements([newAnnouncement, ...announcements]);
-    // Also save to 'dayflow_announcements' for the employee side sync
     localStorage.setItem('dayflow_announcements', JSON.stringify([newAnnouncement, ...announcements]));
 
     setAnnouncementTitle('');
@@ -93,36 +92,32 @@ export const AdminDashboard = ({ setActiveTab }) => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {/* Top Banner */}
       <div
+        className="dashboard-banner"
         style={{
-          backgroundColor: '#FFFFFF',
-          border: '1px solid #E6E4DD',
-          borderRadius: '16px',
-          padding: '2rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '1.5rem',
-          boxShadow: 'var(--shadow-sm)'
         }}
       >
         <div>
-          <div style={{ fontSize: '0.8125rem', color: '#2D4A3E', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+          <div className="dashboard-banner-text-subtle" style={{ fontSize: '0.8125rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
             <Shield size={14} /> HR Director Overview
           </div>
-          <h2 style={{ fontSize: '1.75rem', fontWeight: '700', color: '#171816', marginTop: '0.2rem', letterSpacing: '-0.025em' }}>
+          <h2 className="dashboard-banner-text-primary" style={{ fontSize: '1.75rem', fontWeight: '700', marginTop: '0.2rem', letterSpacing: '-0.025em' }}>
             Organization Dashboard
           </h2>
-          <p style={{ fontSize: '0.875rem', color: '#565852', marginTop: '0.25rem' }}>
+          <p className="dashboard-banner-text-subtle" style={{ fontSize: '0.875rem', marginTop: '0.25rem' }}>
             Real-time workforce intelligence, attendance metrics, and pending approvals.
           </p>
         </div>
 
         <div style={{ display: 'flex', gap: '0.75rem' }}>
-          <button onClick={() => setActiveTab('employees')} className="btn-primary">
+          <button onClick={() => setActiveTab('employees')} className="btn-primary" style={{ backgroundColor: '#FFFFFF', color: '#2D4A3E', border: '1px solid #FFFFFF' }}>
             <UserPlus size={16} /> Manage Employees
           </button>
-          <button onClick={() => setActiveTab('leave-approvals')} className="btn-secondary">
+          <button onClick={() => setActiveTab('leave-approvals')} className="btn-secondary" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#FFFFFF', border: '1px solid rgba(255,255,255,0.2)' }}>
             <CalendarDays size={16} /> Review Leave Requests
           </button>
         </div>
@@ -130,16 +125,8 @@ export const AdminDashboard = ({ setActiveTab }) => {
 
       {/* KPI Metric Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
-        {/* Total Staff */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-          }}
-        >
+        {/* Total Workforce Card */}
+        <div className="dashboard-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
             <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: '#888A83', letterSpacing: '0.04em' }}>Total Workforce</span>
             <div style={{ backgroundColor: '#EBF2EE', color: '#2D4A3E', padding: '0.5rem', borderRadius: '8px' }}>
@@ -154,16 +141,8 @@ export const AdminDashboard = ({ setActiveTab }) => {
           </div>
         </div>
 
-        {/* Today's Attendance Rate */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-          }}
-        >
+        {/* Today's Attendance Rate Card */}
+        <div className="dashboard-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
             <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: '#888A83', letterSpacing: '0.04em' }}>Today's Attendance</span>
             <div style={{ backgroundColor: '#EBF2EE', color: '#2D4A3E', padding: '0.5rem', borderRadius: '8px' }}>
@@ -178,16 +157,8 @@ export const AdminDashboard = ({ setActiveTab }) => {
           </div>
         </div>
 
-        {/* Pending Leaves */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-          }}
-        >
+        {/* Pending Approvals Card */}
+        <div className="dashboard-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
             <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: '#888A83', letterSpacing: '0.04em' }}>Pending Approvals</span>
             <div style={{ backgroundColor: '#FEF3C7', color: '#92400E', padding: '0.5rem', borderRadius: '8px' }}>
@@ -202,16 +173,8 @@ export const AdminDashboard = ({ setActiveTab }) => {
           </div>
         </div>
 
-        {/* Monthly Payroll Total */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-          }}
-        >
+        {/* Monthly Payroll Total Card */}
+        <div className="dashboard-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
             <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: '#888A83', letterSpacing: '0.04em' }}>Monthly Payroll</span>
             <div style={{ backgroundColor: '#EBF2EE', color: '#2D4A3E', padding: '0.5rem', borderRadius: '8px' }}>
@@ -231,18 +194,7 @@ export const AdminDashboard = ({ setActiveTab }) => {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '1.5rem' }}>
         
         {/* Today's Attendance breakdown bar chart */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between'
-          }}
-        >
+        <div className="dashboard-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <div style={{ marginBottom: '1.25rem' }}>
               <span style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#888A83' }}>
@@ -290,18 +242,7 @@ export const AdminDashboard = ({ setActiveTab }) => {
         </div>
 
         {/* HR Announcements Publisher */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between'
-          }}
-        >
+        <div className="dashboard-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
               <Volume2 size={20} color="#2D4A3E" />
@@ -356,16 +297,9 @@ export const AdminDashboard = ({ setActiveTab }) => {
 
       {/* Action Queue & Activity Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.5rem' }}>
+        
         {/* Pending Leave Requests Queue */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-          }}
-        >
+        <div className="dashboard-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
             <div>
               <span style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#888A83' }}>
@@ -433,15 +367,7 @@ export const AdminDashboard = ({ setActiveTab }) => {
         </div>
 
         {/* Audit Activity Trail */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-          }}
-        >
+        <div className="dashboard-card">
           <div style={{ marginBottom: '1.25rem' }}>
             <span style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#888A83' }}>
               Audit Stream
@@ -451,39 +377,38 @@ export const AdminDashboard = ({ setActiveTab }) => {
             </h3>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxHeight: '340px', overflowY: 'auto' }}>
+          <div className="audit-timeline" style={{ maxHeight: '340px', overflowY: 'auto', paddingRight: '0.5rem' }}>
             {recentActivity.length === 0 ? (
-              <div style={{ fontSize: '0.8125rem', color: '#888A83', fontStyle: 'italic' }}>No audit logs recorded yet.</div>
+              <div style={{ fontSize: '0.8125rem', color: '#888A83', fontStyle: 'italic', paddingLeft: '1rem' }}>No audit logs recorded yet.</div>
             ) : (
-              recentActivity.map((log) => (
-                <div
-                  key={log.id}
-                  style={{
-                    padding: '0.75rem',
-                    borderRadius: '8px',
-                    backgroundColor: '#F7F6F2',
-                    fontSize: '0.8125rem',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'flex-start',
-                  }}
-                >
-                  <div>
-                    <div style={{ fontWeight: '600', color: '#171816' }}>
-                      {log.action.replace('_', ' ')}
-                    </div>
-                    <div style={{ color: '#565852', marginTop: '0.1rem', fontSize: '0.75rem' }}>
-                      {log.details}
+              recentActivity.map((log) => {
+                let dotClass = 'audit-dot';
+                if (log.action.includes('UPDATE')) dotClass = 'audit-dot update';
+                if (log.action.includes('DELETE') || log.action.includes('REJECT')) dotClass = 'audit-dot delete';
+                
+                return (
+                  <div key={log.id} className="audit-item">
+                    <span className={dotClass} />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <div>
+                        <div style={{ fontWeight: '700', color: '#171816', textTransform: 'capitalize' }}>
+                          {log.action.toLowerCase().replace('_', ' ')}
+                        </div>
+                        <div style={{ color: '#565852', marginTop: '0.15rem' }}>
+                          {log.details}
+                        </div>
+                      </div>
+                      <div style={{ fontSize: '0.6875rem', color: '#888A83', whiteSpace: 'nowrap', marginLeft: '1rem' }}>
+                        {new Date(log.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </div>
                     </div>
                   </div>
-                  <div style={{ fontSize: '0.6875rem', color: '#888A83', whiteSpace: 'nowrap', marginLeft: '0.5rem' }}>
-                    {new Date(log.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
         </div>
+
       </div>
 
       <LeaveApprovalModal

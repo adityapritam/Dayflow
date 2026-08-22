@@ -104,17 +104,13 @@ export const EmployeeDashboard = ({ setActiveTab }) => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {/* Top Banner / Welcome */}
       <div
+        className="dashboard-banner"
         style={{
-          backgroundColor: '#FFFFFF',
-          border: '1px solid #E6E4DD',
-          borderRadius: '16px',
-          padding: '2rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '1.5rem',
-          boxShadow: 'var(--shadow-sm)'
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
@@ -122,32 +118,32 @@ export const EmployeeDashboard = ({ setActiveTab }) => {
             <img
               src={profile?.avatarUrl || 'https://api.dicebear.com/7.x/avataaars/svg?seed=User'}
               alt="Avatar"
-              style={{ width: '72px', height: '72px', borderRadius: '50%', border: '3px solid #2D4A3E', objectFit: 'cover' }}
+              style={{ width: '72px', height: '72px', borderRadius: '50%', border: '3px solid rgba(255,255,255,0.2)', objectFit: 'cover' }}
             />
-            <span style={{ position: 'absolute', bottom: '2px', right: '2px', width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#059669', border: '2px solid #FFFFFF' }} />
+            <span style={{ position: 'absolute', bottom: '2px', right: '2px', width: '14px', height: '14px', borderRadius: '50%', backgroundColor: '#059669', border: '2px solid #2D4A3E' }} />
           </div>
           <div>
-            <div style={{ fontSize: '0.75rem', color: '#888A83', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+            <div className="dashboard-banner-text-subtle" style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
               Employee Portal Workspace
             </div>
-            <h2 style={{ fontSize: '1.75rem', fontWeight: '700', color: '#171816', marginTop: '0.15rem', letterSpacing: '-0.025em' }}>
+            <h2 className="dashboard-banner-text-primary" style={{ fontSize: '1.75rem', fontWeight: '700', marginTop: '0.15rem', letterSpacing: '-0.025em' }}>
               Welcome back, {profile?.firstName}!
             </h2>
-            <div style={{ fontSize: '0.875rem', color: '#565852', marginTop: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ fontWeight: '600', color: '#171816' }}>{profile?.jobTitle}</span>
-              <span style={{ color: '#D5D3CA' }}>•</span>
-              <span style={{ fontWeight: '500', color: '#2D4A3E' }}>{profile?.department}</span>
-              <span style={{ color: '#D5D3CA' }}>•</span>
+            <div className="dashboard-banner-text-subtle" style={{ fontSize: '0.875rem', marginTop: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span style={{ fontWeight: '600' }}>{profile?.jobTitle}</span>
+              <span>•</span>
+              <span style={{ fontWeight: '500' }}>{profile?.department}</span>
+              <span>•</span>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem' }}>{user?.employeeId}</span>
             </div>
           </div>
         </div>
 
         <div style={{ display: 'flex', gap: '0.75rem' }}>
-          <button onClick={() => setIsLeaveModalOpen(true)} className="btn-primary">
+          <button onClick={() => setIsLeaveModalOpen(true)} className="btn-primary" style={{ backgroundColor: '#FFFFFF', color: '#2D4A3E', border: '1px solid #FFFFFF' }}>
             <Plus size={16} /> Apply for Leave
           </button>
-          <button onClick={() => setActiveTab('profile')} className="btn-secondary">
+          <button onClick={() => setActiveTab('profile')} className="btn-secondary" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#FFFFFF', border: '1px solid rgba(255,255,255,0.2)' }}>
             <User size={16} /> Edit Profile Info
           </button>
         </div>
@@ -159,18 +155,7 @@ export const EmployeeDashboard = ({ setActiveTab }) => {
         <AttendanceWidget onStatusChange={loadData} />
 
         {/* Leave Balance Snapshot Card */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}
-        >
+        <div className="dashboard-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
               <div>
@@ -237,18 +222,7 @@ export const EmployeeDashboard = ({ setActiveTab }) => {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '1.5rem' }}>
         
         {/* Interactive Checklist Widget */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between'
-          }}
-        >
+        <div className="dashboard-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
               <ListTodo size={20} color="#2D4A3E" />
@@ -271,20 +245,7 @@ export const EmployeeDashboard = ({ setActiveTab }) => {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem', maxHeight: '200px', overflowY: 'auto' }}>
               {tasks.map((task) => (
-                <div
-                  key={task.id}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '0.5rem 0.75rem',
-                    backgroundColor: task.done ? '#FAFAF8' : '#FFFFFF',
-                    border: '1px solid #E6E4DD',
-                    borderRadius: '8px',
-                    fontSize: '0.875rem',
-                    transition: 'all 0.15s ease'
-                  }}
-                >
+                <div key={task.id} className="checklist-item">
                   <div
                     onClick={() => toggleTask(task.id)}
                     style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', cursor: 'pointer', flex: 1 }}
@@ -311,18 +272,7 @@ export const EmployeeDashboard = ({ setActiveTab }) => {
         </div>
 
         {/* Payroll Card */}
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between'
-          }}
-        >
+        <div className="dashboard-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
               <div>
@@ -374,15 +324,7 @@ export const EmployeeDashboard = ({ setActiveTab }) => {
 
       {/* Announcements Section */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
-        <div
-          style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
-            borderRadius: '12px',
-            padding: '1.5rem',
-            boxShadow: 'var(--shadow-sm)',
-          }}
-        >
+        <div className="dashboard-card">
           <div style={{ marginBottom: '1.25rem' }}>
             <span style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#888A83' }}>
               Organization News

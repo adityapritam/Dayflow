@@ -280,3 +280,113 @@ a {
     transform: scale(1) translateY(0);
   }
 }
+
+/* Premium Dashboard UI Classes */
+.dashboard-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.dashboard-banner {
+  background: linear-gradient(135deg, #2D4A3E 0%, #1A2B24 100%);
+  border: 1px solid #1F352C;
+  color: #FFFFFF !important;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-banner::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(235, 242, 238, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.dashboard-banner-text-subtle {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.dashboard-banner-text-primary {
+  color: #FFFFFF !important;
+}
+
+/* Interactive Checklist Items */
+.checklist-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.checklist-item:hover {
+  background: #FAF9F6;
+  border-color: #D5D3CA;
+  transform: translateX(4px);
+}
+
+/* Timeline Audit Logs */
+.audit-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.audit-timeline::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background-color: var(--bg-subtle);
+}
+
+.audit-item {
+  position: relative;
+  font-size: 0.8125rem;
+}
+
+.audit-dot {
+  position: absolute;
+  left: -23px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  border: 2px solid var(--bg-surface);
+  box-shadow: 0 0 0 3px rgba(45, 74, 62, 0.15);
+}
+
+.audit-dot.update {
+  background-color: var(--color-amber);
+}
+
+.audit-dot.delete {
+  background-color: var(--color-rose);
+}
