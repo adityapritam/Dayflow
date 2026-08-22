@@ -1,0 +1,111 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id               String           @id @default(uuid())
+  employeeId       String           @unique
+  email            String           @unique
+  password         String
+  role             String           @default("EMPLOYEE") // EMPLOYEE, ADMIN
+  emailVerified    Boolean          @default(false)
+  verificationCode String?
+  profile          EmployeeProfile?
+  activityLogs     ActivityLog[]
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+}
+
+model EmployeeProfile {
+  id            String          @id @default(uuid())
+  userId        String          @unique
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  firstName     String
+  lastName      String
+  phone         String?
+  address       String?
+  jobTitle      String
+  department    String
+  joinDate      String
+  avatarUrl     String?
+  baseSalary    Float           @default(0.0)
+  allowances    Float           @default(0.0)
+  deductions    Float           @default(0.0)
+  netSalary     Float           @default(0.0)
+  status        String          @default("ACTIVE") // ACTIVE, INACTIVE
+  attendances   Attendance[]
+  leaveRequests LeaveRequest[]
+  payrolls      PayrollRecord[]
+  documents     Document[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+model Attendance {
+  id         String          @id @default(uuid())
+  employeeId String
+  employee   EmployeeProfile @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  date       String          // YYYY-MM-DD
+  checkIn    String?         // HH:mm:ss or ISO timestamp
+  checkOut   String?         // HH:mm:ss or ISO timestamp
+  totalHours Float           @default(0.0)
+  status     String          @default("PRESENT") // PRESENT, ABSENT, HALF_DAY, LEAVE
+  notes      String?
+  createdAt  DateTime        @default(now())
+}
+
+model LeaveRequest {
+  id           String          @id @default(uuid())
+  employeeId   String
+  employee     EmployeeProfile @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  leaveType    String          @default("PAID") // PAID, SICK, UNPAID
+  startDate    String          // YYYY-MM-DD
+  endDate      String          // YYYY-MM-DD
+  totalDays    Int             @default(1)
+  reason       String
+  status       String          @default("PENDING") // PENDING, APPROVED, REJECTED
+  adminComment String?
+  reviewedBy   String?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+}
+
+model PayrollRecord {
+  id          String          @id @default(uuid())
+  employeeId  String
+  employee    EmployeeProfile @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  month       Int
+  year        Int
+  baseSalary  Float
+  allowances  Float
+  deductions  Float
+  netSalary   Float
+  paymentDate String?
+  status      String          @default("PAID") // PAID, PENDING, PROCESSING
+  paystubUrl  String?
+  createdAt   DateTime        @default(now())
+}
+
+model Document {
+  id         String          @id @default(uuid())
+  employeeId String
+  employee   EmployeeProfile @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  title      String
+  category   String          // IDENTIFICATION, CONTRACT, TAX, CERTIFICATE
+  fileUrl    String
+  uploadedAt DateTime        @default(now())
+}
+
+model ActivityLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action    String
+  details   String?
+  createdAt DateTime @default(now())
+}
