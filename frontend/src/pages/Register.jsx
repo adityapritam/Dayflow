@@ -45,7 +45,7 @@ export const Register = ({ onNavigateLogin, onNavigateVerify, onBackToLanding })
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#FBFBF9',
+        backgroundColor: 'var(--bg-main)',
         padding: '2rem 1rem',
         position: 'relative',
       }}
@@ -60,13 +60,13 @@ export const Register = ({ onNavigateLogin, onNavigateVerify, onBackToLanding })
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
+            backgroundColor: 'var(--bg-surface)',
+            border: '1px solid var(--border-color)',
             borderRadius: '8px',
             padding: '0.5rem 1rem',
             fontSize: '0.875rem',
             fontWeight: '600',
-            color: '#2D4A3E',
+            color: 'var(--text-primary)',
             boxShadow: 'var(--shadow-sm)',
             cursor: 'pointer',
             transition: 'all 0.2s',
@@ -94,18 +94,18 @@ export const Register = ({ onNavigateLogin, onNavigateVerify, onBackToLanding })
           >
             D
           </div>
-          <h2 style={{ fontSize: '1.75rem', fontWeight: '700', color: '#171816', letterSpacing: '-0.03em' }}>
+          <h2 style={{ fontSize: '1.75rem', fontWeight: '700', color: 'var(--text-primary)', letterSpacing: '-0.03em' }}>
             Create Dayflow Account
           </h2>
-          <p style={{ fontSize: '0.875rem', color: '#565852', marginTop: '0.25rem' }}>
+          <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: '0.25rem' }}>
             Join your organization's workspace
           </p>
         </div>
 
         <div
           style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
+            backgroundColor: 'var(--bg-surface)',
+            border: '1px solid var(--border-color)',
             borderRadius: '16px',
             padding: '2rem',
             boxShadow: '0 4px 20px -4px rgba(0,0,0,0.05)',
@@ -208,11 +208,11 @@ export const Register = ({ onNavigateLogin, onNavigateVerify, onBackToLanding })
           </form>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#565852' }}>
+        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
           Already registered?{' '}
           <button
             onClick={onNavigateLogin}
-            style={{ color: '#2D4A3E', fontWeight: '600', textDecoration: 'underline' }}
+            style={{ color: 'var(--color-primary)', fontWeight: '600', textDecoration: 'underline' }}
           >
             Sign In
           </button>

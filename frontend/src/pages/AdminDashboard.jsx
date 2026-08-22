@@ -280,12 +280,12 @@ export const AdminDashboard = ({ setActiveTab }) => {
             </form>
           </div>
 
-          <div style={{ marginTop: '1rem', borderTop: '1px solid #F5F4EE', paddingTop: '0.75rem' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: '600', color: '#888A83', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Active Broadcasts</div>
+          <div style={{ marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '0.75rem' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Active Broadcasts</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', maxHeight: '100px', overflowY: 'auto' }}>
               {announcements.map(a => (
-                <div key={a.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem', backgroundColor: '#F7F6F2', padding: '0.35rem 0.5rem', borderRadius: '6px' }}>
-                  <span style={{ fontWeight: '600', color: '#171816', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '200px' }}>{a.title}</span>
+                <div key={a.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8125rem', backgroundColor: 'var(--bg-main)', padding: '0.35rem 0.5rem', borderRadius: '6px' }}>
+                  <span style={{ fontWeight: '600', color: 'var(--text-primary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '200px' }}>{a.title}</span>
                   <button onClick={() => deleteAnnouncement(a.id)} style={{ color: '#DC2626' }}><X size={14} /></button>
                 </div>
               ))}

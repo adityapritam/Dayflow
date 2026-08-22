@@ -44,7 +44,7 @@ export const Login = ({ onNavigateRegister, onNavigateVerify, onBackToLanding })
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#FBFBF9',
+        backgroundColor: 'var(--bg-main)',
         padding: '2rem 1rem',
         position: 'relative',
       }}
@@ -59,13 +59,13 @@ export const Login = ({ onNavigateRegister, onNavigateVerify, onBackToLanding })
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
+            backgroundColor: 'var(--bg-surface)',
+            border: '1px solid var(--border-color)',
             borderRadius: '8px',
             padding: '0.5rem 1rem',
             fontSize: '0.875rem',
             fontWeight: '600',
-            color: '#2D4A3E',
+            color: 'var(--text-primary)',
             boxShadow: 'var(--shadow-sm)',
             cursor: 'pointer',
             transition: 'all 0.2s',
@@ -95,10 +95,10 @@ export const Login = ({ onNavigateRegister, onNavigateVerify, onBackToLanding })
           >
             D
           </div>
-          <h2 style={{ fontSize: '1.75rem', fontWeight: '700', color: '#171816', letterSpacing: '-0.03em' }}>
+          <h2 style={{ fontSize: '1.75rem', fontWeight: '700', color: 'var(--text-primary)', letterSpacing: '-0.03em' }}>
             Welcome to Dayflow
           </h2>
-          <p style={{ fontSize: '0.875rem', color: '#565852', marginTop: '0.35rem' }}>
+          <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: '0.35rem' }}>
             Human Capital Management Platform
           </p>
         </div>
@@ -106,8 +106,8 @@ export const Login = ({ onNavigateRegister, onNavigateVerify, onBackToLanding })
         {/* Login Card */}
         <div
           style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
+            backgroundColor: 'var(--bg-surface)',
+            border: '1px solid var(--border-color)',
             borderRadius: '16px',
             padding: '2rem',
             boxShadow: '0 4px 20px -4px rgba(0,0,0,0.05)',
@@ -163,8 +163,8 @@ export const Login = ({ onNavigateRegister, onNavigateVerify, onBackToLanding })
           </form>
 
           {/* Quick Demo Access Bar */}
-          <div style={{ marginTop: '1.75rem', paddingTop: '1.25rem', borderTop: '1px solid #F5F4EE' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: '600', color: '#888A83', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+          <div style={{ marginTop: '1.75rem', paddingTop: '1.25rem', borderTop: '1px solid var(--border-color)' }}>
+            <div style={{ fontSize: '0.75rem', fontWeight: '600', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
               <Sparkles size={14} color="#D97706" /> Quick Demo Credentials
             </div>
 
@@ -174,17 +174,17 @@ export const Login = ({ onNavigateRegister, onNavigateVerify, onBackToLanding })
                 onClick={() => handleQuickLogin('admin@dayflow.com', 'Password123!')}
                 style={{
                   padding: '0.5rem 0.75rem',
-                  backgroundColor: '#F5F4EE',
-                  border: '1px solid #E6E4DD',
+                  backgroundColor: 'var(--bg-subtle)',
+                  border: '1px solid var(--border-color)',
                   borderRadius: '8px',
                   fontSize: '0.75rem',
                   textAlign: 'left',
                 }}
               >
-                <div style={{ fontWeight: '600', color: '#2D4A3E', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                <div style={{ fontWeight: '600', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                   <ShieldCheck size={12} /> HR Admin Account
                 </div>
-                <div style={{ color: '#888A83', fontSize: '0.6875rem', marginTop: '0.1rem' }}>admin@dayflow.com</div>
+                <div style={{ color: 'var(--text-muted)', fontSize: '0.6875rem', marginTop: '0.1rem' }}>admin@dayflow.com</div>
               </button>
 
               <button
@@ -192,27 +192,27 @@ export const Login = ({ onNavigateRegister, onNavigateVerify, onBackToLanding })
                 onClick={() => handleQuickLogin('alex@dayflow.com', 'Password123!')}
                 style={{
                   padding: '0.5rem 0.75rem',
-                  backgroundColor: '#F5F4EE',
-                  border: '1px solid #E6E4DD',
+                  backgroundColor: 'var(--bg-subtle)',
+                  border: '1px solid var(--border-color)',
                   borderRadius: '8px',
                   fontSize: '0.75rem',
                   textAlign: 'left',
                 }}
               >
-                <div style={{ fontWeight: '600', color: '#171816', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                <div style={{ fontWeight: '600', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                   <User size={12} /> Employee Account
                 </div>
-                <div style={{ color: '#888A83', fontSize: '0.6875rem', marginTop: '0.1rem' }}>alex@dayflow.com</div>
+                <div style={{ color: 'var(--text-muted)', fontSize: '0.6875rem', marginTop: '0.1rem' }}>alex@dayflow.com</div>
               </button>
             </div>
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#565852' }}>
+        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
           Don't have an employee account?{' '}
           <button
             onClick={onNavigateRegister}
-            style={{ color: '#2D4A3E', fontWeight: '600', textDecoration: 'underline' }}
+            style={{ color: 'var(--color-primary)', fontWeight: '600', textDecoration: 'underline' }}
           >
             Create Account
           </button>
