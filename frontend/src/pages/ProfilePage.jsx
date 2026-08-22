@@ -220,39 +220,39 @@ export const ProfilePage = () => {
         {/* Read-Only Salary Structure */}
         <div
           style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
+            backgroundColor: 'var(--bg-surface)',
+            border: '1px solid var(--border-color)',
             borderRadius: '12px',
             padding: '1.5rem',
             boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
-            <DollarSign size={20} color="#2D4A3E" />
-            <h3 style={{ fontSize: '1.125rem', fontWeight: '700', color: '#171816' }}>
+            <DollarSign size={20} color="var(--color-primary)" />
+            <h3 style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-primary)' }}>
               Salary & Benefits Summary
             </h3>
           </div>
 
-          <div style={{ backgroundColor: '#F7F6F2', padding: '1rem', borderRadius: '10px', display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.875rem' }}>
+          <div style={{ backgroundColor: 'var(--bg-main)', padding: '1rem', borderRadius: '10px', display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.875rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#565852' }}>Annual Base Salary</span>
-              <span style={{ fontWeight: '700', color: '#171816' }}>${profile?.baseSalary?.toLocaleString() || 0}</span>
+              <span style={{ color: 'var(--text-secondary)' }}>Annual Base Salary</span>
+              <span style={{ fontWeight: '700', color: 'var(--text-primary)' }}>${profile?.baseSalary?.toLocaleString() || 0}</span>
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#565852' }}>Annual Allowances</span>
+              <span style={{ color: 'var(--text-secondary)' }}>Annual Allowances</span>
               <span style={{ fontWeight: '700', color: '#059669' }}>+${profile?.allowances?.toLocaleString() || 0}</span>
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: '#565852' }}>Tax & Deductions</span>
+              <span style={{ color: 'var(--text-secondary)' }}>Tax & Deductions</span>
               <span style={{ fontWeight: '700', color: '#DC2626' }}>-${profile?.deductions?.toLocaleString() || 0}</span>
             </div>
 
-            <div style={{ borderTop: '1px solid #E6E4DD', paddingTop: '0.75rem', display: 'flex', justifyContent: 'space-between', fontWeight: '700', fontSize: '1rem' }}>
-              <span style={{ color: '#2D4A3E' }}>Net Annual Total</span>
-              <span style={{ color: '#2D4A3E' }}>${profile?.netSalary?.toLocaleString() || 0}</span>
+            <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '0.75rem', display: 'flex', justifyContent: 'space-between', fontWeight: '700', fontSize: '1rem' }}>
+              <span style={{ color: 'var(--color-primary)' }}>Net Annual Total</span>
+              <span style={{ color: 'var(--color-primary)' }}>${profile?.netSalary?.toLocaleString() || 0}</span>
             </div>
           </div>
         </div>

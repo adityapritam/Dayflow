@@ -73,8 +73,8 @@ export const AttendanceWidget = ({ onStatusChange }) => {
   return (
     <div
       style={{
-        backgroundColor: '#FFFFFF',
-        border: '1px solid #E6E4DD',
+        backgroundColor: 'var(--bg-surface)',
+        border: '1px solid var(--border-color)',
         borderRadius: '12px',
         padding: '1.5rem',
         boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
@@ -97,7 +97,7 @@ export const AttendanceWidget = ({ onStatusChange }) => {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
           gap: '1rem',
-          backgroundColor: '#F7F6F2',
+          backgroundColor: 'var(--bg-main)',
           padding: '1.25rem',
           borderRadius: '10px',
           marginBottom: '1.25rem',

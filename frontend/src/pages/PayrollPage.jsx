@@ -173,8 +173,8 @@ export const PayrollPage = () => {
       {!isAdmin && salaryStructure && (
         <div
           style={{
-            backgroundColor: '#FFFFFF',
-            border: '1px solid #E6E4DD',
+            backgroundColor: 'var(--bg-surface)',
+            border: '1px solid var(--border-color)',
             borderRadius: '16px',
             padding: '1.75rem',
             boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
@@ -185,28 +185,28 @@ export const PayrollPage = () => {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.25rem', marginTop: '1.25rem' }}>
-            <div style={{ backgroundColor: '#EBF2EE', border: '1px solid #C2D6CA', padding: '1.25rem', borderRadius: '10px' }}>
+            <div style={{ backgroundColor: 'var(--bg-accent-light)', border: '1px solid var(--border-color)', padding: '1.25rem', borderRadius: '10px' }}>
               <div style={{ fontSize: '0.75rem', color: '#2D4A3E', fontWeight: '700', textTransform: 'uppercase' }}>Annual Net Salary</div>
               <div style={{ fontSize: '1.75rem', fontWeight: '700', color: '#2D4A3E', marginTop: '0.25rem' }}>
                 ${salaryStructure.netSalary.toLocaleString()}
               </div>
             </div>
 
-            <div style={{ backgroundColor: '#F7F6F2', padding: '1.25rem', borderRadius: '10px' }}>
+            <div style={{ backgroundColor: 'var(--bg-main)', padding: '1.25rem', borderRadius: '10px' }}>
               <div style={{ fontSize: '0.75rem', color: '#565852', fontWeight: '600' }}>Annual Base</div>
               <div style={{ fontSize: '1.5rem', fontWeight: '700', color: '#171816', marginTop: '0.25rem' }}>
                 ${salaryStructure.baseSalary.toLocaleString()}
               </div>
             </div>
 
-            <div style={{ backgroundColor: '#F7F6F2', padding: '1.25rem', borderRadius: '10px' }}>
+            <div style={{ backgroundColor: 'var(--bg-main)', padding: '1.25rem', borderRadius: '10px' }}>
               <div style={{ fontSize: '0.75rem', color: '#565852', fontWeight: '600' }}>Allowances</div>
               <div style={{ fontSize: '1.5rem', fontWeight: '700', color: '#059669', marginTop: '0.25rem' }}>
                 +${salaryStructure.allowances.toLocaleString()}
               </div>
             </div>
 
-            <div style={{ backgroundColor: '#F7F6F2', padding: '1.25rem', borderRadius: '10px' }}>
+            <div style={{ backgroundColor: 'var(--bg-main)', padding: '1.25rem', borderRadius: '10px' }}>
               <div style={{ fontSize: '0.75rem', color: '#565852', fontWeight: '600' }}>Deductions</div>
               <div style={{ fontSize: '1.5rem', fontWeight: '700', color: '#DC2626', marginTop: '0.25rem' }}>
                 -${salaryStructure.deductions.toLocaleString()}
@@ -219,8 +219,8 @@ export const PayrollPage = () => {
       {/* Header Bar */}
       <div
         style={{
-          backgroundColor: '#FFFFFF',
-          border: '1px solid #E6E4DD',
+          backgroundColor: 'var(--bg-surface)',
+          border: '1px solid var(--border-color)',
           borderRadius: '12px',
           padding: '1.25rem 1.5rem',
           display: 'flex',
@@ -370,15 +370,15 @@ export const PayrollPage = () => {
       {salaryModalOpen && (
         <div className="modal-overlay">
           <div className="modal-card">
-            <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid #E6E4DD', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h3 style={{ fontSize: '1.125rem', fontWeight: '700', color: '#171816' }}>
+            <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h3 style={{ fontSize: '1.125rem', fontWeight: '700', color: 'var(--text-primary)' }}>
                 Update Salary Structure
               </h3>
               <button onClick={() => setSalaryModalOpen(false)} style={{ color: '#888A83' }}>✕</button>
             </div>
 
             <form onSubmit={handleSaveSalary} style={{ padding: '1.5rem' }}>
-              <div style={{ fontSize: '0.875rem', fontWeight: '600', color: '#171816', marginBottom: '1rem' }}>
+              <div style={{ fontSize: '0.875rem', fontWeight: '600', color: 'var(--text-primary)', marginBottom: '1rem' }}>
                 Employee: {editEmployeeSalary?.firstName} {editEmployeeSalary?.lastName}
               </div>
 

@@ -158,7 +158,7 @@ export const AttendancePage = () => {
         </div>
 
         {/* Date Navigation & Status Filters Bar */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', backgroundColor: '#F9F8F6', padding: '0.75rem 1rem', borderRadius: '8px', border: '1px solid #E6E4DD' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', backgroundColor: 'var(--bg-subtle)', padding: '0.75rem 1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
           
           {/* Navigation Controls */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -216,7 +216,7 @@ export const AttendancePage = () => {
         </div>
 
         {/* Attendance Results Table */}
-        <div className="table-container" style={{ border: '1px solid #E6E4DD', borderRadius: '8px', overflow: 'hidden' }}>
+        <div className="table-container" style={{ border: '1px solid var(--border-color)', borderRadius: '8px', overflow: 'hidden' }}>
           <table className="custom-table">
             <thead>
               <tr>

@@ -288,30 +288,30 @@ export const EmployeeDashboard = ({ setActiveTab }) => {
               </button>
             </div>
 
-            <div style={{ backgroundColor: '#EBF2EE', border: '1px solid #C2D6CA', borderRadius: '10px', padding: '1.25rem', marginBottom: '1rem' }}>
-              <div style={{ fontSize: '0.75rem', color: '#2D4A3E', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Estimated Net Monthly Pay</div>
-              <div style={{ fontSize: '1.875rem', fontWeight: '700', color: '#2D4A3E', marginTop: '0.25rem' }}>
+            <div style={{ backgroundColor: 'var(--bg-accent-light)', border: '1px solid var(--border-color)', borderRadius: '10px', padding: '1.25rem', marginBottom: '1rem' }}>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Estimated Net Monthly Pay</div>
+              <div style={{ fontSize: '1.875rem', fontWeight: '700', color: 'var(--text-primary)', marginTop: '0.25rem' }}>
                 ${payrollInfo ? Math.round(payrollInfo.monthlyNet).toLocaleString() : '5,083'}
-                <span style={{ fontSize: '0.875rem', color: '#565852', fontWeight: '400' }}> / mo</span>
+                <span style={{ fontSize: '0.875rem', color: 'var(--text-muted)', fontWeight: '400' }}> / mo</span>
               </div>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.75rem', textAlign: 'center', fontSize: '0.8125rem' }}>
-              <div style={{ backgroundColor: '#F7F6F2', padding: '0.75rem', borderRadius: '8px' }}>
+              <div style={{ backgroundColor: 'var(--bg-main)', padding: '0.75rem', borderRadius: '8px' }}>
                 <div style={{ color: '#888A83', fontSize: '0.6875rem', textTransform: 'uppercase', fontWeight: '600' }}>Base Pay</div>
                 <div style={{ fontWeight: '700', color: '#171816', marginTop: '0.15rem' }}>
                   ${payrollInfo ? Math.round(payrollInfo.monthlyBase).toLocaleString() : '7,916'}
                 </div>
               </div>
 
-              <div style={{ backgroundColor: '#F7F6F2', padding: '0.75rem', borderRadius: '8px' }}>
+              <div style={{ backgroundColor: 'var(--bg-main)', padding: '0.75rem', borderRadius: '8px' }}>
                 <div style={{ color: '#888A83', fontSize: '0.6875rem', textTransform: 'uppercase', fontWeight: '600' }}>Allowances</div>
                 <div style={{ fontWeight: '700', color: '#059669', marginTop: '0.15rem' }}>
                   +${payrollInfo ? Math.round(payrollInfo.monthlyAllowances).toLocaleString() : '416'}
                 </div>
               </div>
 
-              <div style={{ backgroundColor: '#F7F6F2', padding: '0.75rem', borderRadius: '8px' }}>
+              <div style={{ backgroundColor: 'var(--bg-main)', padding: '0.75rem', borderRadius: '8px' }}>
                 <div style={{ color: '#888A83', fontSize: '0.6875rem', textTransform: 'uppercase', fontWeight: '600' }}>Deductions</div>
                 <div style={{ fontWeight: '700', color: '#DC2626', marginTop: '0.15rem' }}>
                   -${payrollInfo ? Math.round(payrollInfo.monthlyDeductions).toLocaleString() : '333'}
@@ -336,7 +336,7 @@ export const EmployeeDashboard = ({ setActiveTab }) => {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
             {announcements.map((a) => (
-              <div key={a.id} style={{ backgroundColor: '#F7F6F2', padding: '1.25rem', borderRadius: '10px', display: 'flex', gap: '0.75rem', border: '1px solid #E6E4DD' }}>
+              <div key={a.id} style={{ backgroundColor: 'var(--bg-main)', padding: '1.25rem', borderRadius: '10px', display: 'flex', gap: '0.75rem', border: '1px solid var(--border-color)' }}>
                 <CheckCircle size={20} color="#2D4A3E" style={{ flexShrink: 0, marginTop: '0.15rem' }} />
                 <div>
                   <div style={{ fontSize: '0.9375rem', fontWeight: '700', color: '#171816' }}>{a.title}</div>
