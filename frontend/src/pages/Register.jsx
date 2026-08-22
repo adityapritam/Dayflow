@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { UserPlus, AlertCircle, Mail, Key, User, Building, Briefcase } from 'lucide-react';
 
-export const Register = ({ onNavigateLogin, onNavigateVerify }) => {
+export const Register = ({ onNavigateLogin, onNavigateVerify, onBackToLanding }) => {
   const { registerUser } = useAuth();
   const [formData, setFormData] = useState({
     firstName: '',
@@ -182,14 +182,26 @@ export const Register = ({ onNavigateLogin, onNavigateVerify }) => {
           </form>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#565852' }}>
-          Already registered?{' '}
-          <button
-            onClick={onNavigateLogin}
-            style={{ color: '#2D4A3E', fontWeight: '600', textDecoration: 'underline' }}
-          >
-            Sign In
-          </button>
+        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#565852', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div>
+            Already registered?{' '}
+            <button
+              onClick={onNavigateLogin}
+              style={{ color: '#2D4A3E', fontWeight: '600', textDecoration: 'underline' }}
+            >
+              Sign In
+            </button>
+          </div>
+          {onBackToLanding && (
+            <div>
+              <button
+                onClick={onBackToLanding}
+                style={{ color: '#888A83', fontSize: '0.8125rem', fontWeight: '600', marginTop: '0.25rem' }}
+              >
+                ← Back to Home Page
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

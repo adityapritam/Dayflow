@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 
+import { LandingPage } from './pages/LandingPage';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { VerifyEmail } from './pages/VerifyEmail';
@@ -17,7 +18,7 @@ import { ProfilePage } from './pages/ProfilePage';
 const AppContent = () => {
   const { user, token, activeRoleView, loading } = useAuth();
 
-  const [authView, setAuthView] = useState('login'); // 'login', 'register', 'verify'
+  const [authView, setAuthView] = useState('landing'); // 'landing', 'login', 'register', 'verify'
   const [verifyEmailState, setVerifyEmailState] = useState({ email: '', demoCode: '' });
   const [activeTab, setActiveTab] = useState('dashboard');
 
@@ -30,6 +31,15 @@ const AppContent = () => {
   }
 
   if (!token || !user) {
+    if (authView === 'landing') {
+      return (
+        <LandingPage
+          onLogin={() => setAuthView('login')}
+          onRegister={() => setAuthView('register')}
+        />
+      );
+    }
+
     if (authView === 'register') {
       return (
         <Register
@@ -38,6 +48,7 @@ const AppContent = () => {
             setVerifyEmailState({ email, demoCode });
             setAuthView('verify');
           }}
+          onBackToLanding={() => setAuthView('landing')}
         />
       );
     }
@@ -59,6 +70,7 @@ const AppContent = () => {
           setVerifyEmailState({ email, demoCode });
           setAuthView('verify');
         }}
+        onBackToLanding={() => setAuthView('landing')}
       />
     );
   }

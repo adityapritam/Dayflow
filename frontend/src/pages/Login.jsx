@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { LogIn, AlertCircle, Key, Mail, Sparkles, User, ShieldCheck } from 'lucide-react';
 
-export const Login = ({ onNavigateRegister, onNavigateVerify }) => {
+export const Login = ({ onNavigateRegister, onNavigateVerify, onBackToLanding }) => {
   const { loginUser } = useAuth();
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
@@ -182,14 +182,26 @@ export const Login = ({ onNavigateRegister, onNavigateVerify }) => {
           </div>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#565852' }}>
-          Don't have an employee account?{' '}
-          <button
-            onClick={onNavigateRegister}
-            style={{ color: '#2D4A3E', fontWeight: '600', textDecoration: 'underline' }}
-          >
-            Create Account
-          </button>
+        <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.875rem', color: '#565852', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div>
+            Don't have an employee account?{' '}
+            <button
+              onClick={onNavigateRegister}
+              style={{ color: '#2D4A3E', fontWeight: '600', textDecoration: 'underline' }}
+            >
+              Create Account
+            </button>
+          </div>
+          {onBackToLanding && (
+            <div>
+              <button
+                onClick={onBackToLanding}
+                style={{ color: '#888A83', fontSize: '0.8125rem', fontWeight: '600', marginTop: '0.25rem' }}
+              >
+                ← Back to Home Page
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
