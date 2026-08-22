@@ -2,18 +2,32 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAKo-5D1XuH0u29tqjkh5Iug5xYvKCdgZ0",
-  authDomain: "dayflow-6684d.firebaseapp.com",
-  projectId: "dayflow-6684d",
-  storageBucket: "dayflow-6684d.firebasestorage.app",
-  messagingSenderId: "394720930977",
-  appId: "1:394720930977:web:60c2ea9669043384c8d4e0",
-  measurementId: "G-2QPWMYM9KQ"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const useFirebase = true;
+const hasFirebaseConfig = firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY" && firebaseConfig.apiKey !== "";
 
-console.log('🔥 Firebase Client initialized successfully with static credentials!');
+let auth = null;
+let useFirebase = false;
+
+if (hasFirebaseConfig) {
+  try {
+    const app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    useFirebase = true;
+    console.log('🔥 Firebase Client initialized successfully!');
+  } catch (err) {
+    console.error('❌ Firebase Client failed to initialize:', err.message);
+  }
+} else {
+  console.log('ℹ️ Firebase credentials not configured in environment. Running in local JWT auth mode.');
+}
+
+export { auth, useFirebase };
 export default auth;
