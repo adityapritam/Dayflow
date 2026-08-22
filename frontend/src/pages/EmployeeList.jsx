@@ -14,6 +14,11 @@ import {
   Phone,
   Briefcase,
   Building,
+  LayoutGrid,
+  List,
+  ChevronRight,
+  TrendingUp,
+  UserPlus
 } from 'lucide-react';
 
 export const EmployeeList = () => {
@@ -24,6 +29,7 @@ export const EmployeeList = () => {
   const [department, setDepartment] = useState('ALL');
   const [status, setStatus] = useState('ALL');
   const [loading, setLoading] = useState(true);
+  const [viewMode, setViewMode] = useState('grid'); // 'table' or 'grid'
 
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,29 +56,65 @@ export const EmployeeList = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      {/* Top Header Controls */}
+      {/* Directory Welcome & Stats Header */}
+      <div
+        className="dashboard-banner"
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '1.5rem',
+        }}
+      >
+        <div>
+          <div className="dashboard-banner-text-subtle" style={{ fontSize: '0.8125rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+            <Users size={14} /> Organization Directory
+          </div>
+          <h2 className="dashboard-banner-text-primary" style={{ fontSize: '1.75rem', fontWeight: '700', marginTop: '0.2rem', letterSpacing: '-0.025em' }}>
+            Workforce Directory
+          </h2>
+          <p className="dashboard-banner-text-subtle" style={{ fontSize: '0.875rem', marginTop: '0.25rem' }}>
+            Total Managed Staff: <span style={{ fontWeight: '700' }}>{employees.length}</span> Active and Inactive members.
+          </p>
+        </div>
+
+        <button
+          onClick={() => {
+            setSelectedEmployee(null);
+            setIsModalOpen(true);
+          }}
+          className="btn-primary"
+          style={{ backgroundColor: '#FFFFFF', color: '#2D4A3E', border: '1px solid #FFFFFF' }}
+        >
+          <UserPlus size={16} /> Add Employee
+        </button>
+      </div>
+
+      {/* Filter & View Mode Controls Bar */}
       <div
         style={{
           backgroundColor: '#FFFFFF',
           border: '1px solid #E6E4DD',
           borderRadius: '12px',
-          padding: '1.25rem 1.5rem',
+          padding: '1rem 1.25rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '1rem',
+          boxShadow: 'var(--shadow-sm)',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: '280px' }}>
           <div style={{ position: 'relative', flex: 1 }}>
             <input
               type="text"
-              placeholder="Search by name, ID, title, or email..."
+              placeholder="Search by name, title, or email..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="form-input"
-              style={{ paddingLeft: '2.5rem' }}
+              style={{ paddingLeft: '2.5rem', fontSize: '0.875rem' }}
             />
             <Search size={18} color="#888A83" style={{ position: 'absolute', left: '0.875rem', top: '50%', transform: 'translateY(-50%)' }} />
           </div>
@@ -83,7 +125,7 @@ export const EmployeeList = () => {
               value={department}
               onChange={(e) => setDepartment(e.target.value)}
               className="form-select"
-              style={{ width: '150px' }}
+              style={{ width: '150px', fontSize: '0.875rem' }}
             >
               <option value="ALL">All Departments</option>
               <option value="Engineering">Engineering</option>
@@ -96,7 +138,7 @@ export const EmployeeList = () => {
               value={status}
               onChange={(e) => setStatus(e.target.value)}
               className="form-select"
-              style={{ width: '130px' }}
+              style={{ width: '130px', fontSize: '0.875rem' }}
             >
               <option value="ALL">All Status</option>
               <option value="ACTIVE">Active</option>
@@ -105,52 +147,140 @@ export const EmployeeList = () => {
           </div>
         </div>
 
-        <button
-          onClick={() => {
-            setSelectedEmployee(null);
-            setIsModalOpen(true);
-          }}
-          className="btn-primary"
-        >
-          <Plus size={16} /> Add Employee
-        </button>
+        {/* View Switcher Toggle */}
+        <div style={{ display: 'flex', backgroundColor: '#F5F4EE', padding: '0.25rem', borderRadius: '8px', border: '1px solid #E6E4DD' }}>
+          <button
+            onClick={() => setViewMode('grid')}
+            style={{
+              padding: '0.35rem 0.625rem',
+              borderRadius: '6px',
+              backgroundColor: viewMode === 'grid' ? '#FFFFFF' : 'transparent',
+              color: viewMode === 'grid' ? '#2D4A3E' : '#888A83',
+              boxShadow: viewMode === 'grid' ? 'var(--shadow-sm)' : 'none',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              fontSize: '0.8125rem',
+              fontWeight: '600'
+            }}
+          >
+            <LayoutGrid size={14} /> Grid
+          </button>
+          <button
+            onClick={() => setViewMode('table')}
+            style={{
+              padding: '0.35rem 0.625rem',
+              borderRadius: '6px',
+              backgroundColor: viewMode === 'table' ? '#FFFFFF' : 'transparent',
+              color: viewMode === 'table' ? '#2D4A3E' : '#888A83',
+              boxShadow: viewMode === 'table' ? 'var(--shadow-sm)' : 'none',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              fontSize: '0.8125rem',
+              fontWeight: '600'
+            }}
+          >
+            <List size={14} /> List
+          </button>
+        </div>
       </div>
 
-      {/* Employee Directory Table */}
-      <div className="table-container">
-        <table className="custom-table">
-          <thead>
-            <tr>
-              <th>Employee Details</th>
-              <th>Department & Role</th>
-              <th>Contact Info</th>
-              <th>Join Date</th>
-              <th>Status</th>
-              <th style={{ textAlign: 'right' }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
+      {/* Directory Layout rendering */}
+      {loading ? (
+        <div style={{ padding: '4rem', textAlign: 'center', color: '#888A83', fontSize: '0.875rem', backgroundColor: '#FFFFFF', border: '1px solid #E6E4DD', borderRadius: '12px' }}>
+          Loading employee directory...
+        </div>
+      ) : employees.length === 0 ? (
+        <div style={{ padding: '4rem', textAlign: 'center', color: '#888A83', fontSize: '0.875rem', backgroundColor: '#FFFFFF', border: '1px solid #E6E4DD', borderRadius: '12px' }}>
+          <Search size={36} color="#D5D3CA" style={{ margin: '0 auto 0.75rem auto' }} />
+          No managed staff profiles found matching the filters.
+        </div>
+      ) : viewMode === 'grid' ? (
+        /* Card Grid Mode */
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.25rem' }}>
+          {employees.map((emp) => (
+            <div key={emp.id} className="dashboard-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1.25rem', height: '270px' }}>
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <img
+                    src={emp.avatarUrl || 'https://api.dicebear.com/7.x/avataaars/svg?seed=User'}
+                    alt="Avatar"
+                    style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid #2D4A3E' }}
+                  />
+                  <StatusBadge status={emp.status} />
+                </div>
+
+                <div style={{ marginTop: '0.875rem' }}>
+                  <h4 style={{ fontSize: '1rem', fontWeight: '700', color: '#171816', letterSpacing: '-0.015em' }}>
+                    {emp.firstName} {emp.lastName}
+                  </h4>
+                  <div style={{ fontSize: '0.8125rem', color: '#565852', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.35rem', marginTop: '0.15rem' }}>
+                    <Briefcase size={12} color="#888A83" /> {emp.jobTitle}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: '#2D4A3E', fontWeight: '500', display: 'flex', alignItems: 'center', gap: '0.35rem', marginTop: '0.15rem' }}>
+                    <Building size={11} color="#888A83" /> {emp.department}
+                  </div>
+                </div>
+
+                <div style={{ marginTop: '1rem', borderTop: '1px solid #F5F4EE', paddingTop: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.35rem', fontSize: '0.75rem', color: '#888A83' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                    <Mail size={12} /> {emp.user?.email}
+                  </div>
+                  {emp.phone && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                      <Phone size={12} /> {emp.phone}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Action Buttons inside Card */}
+              <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+                <button
+                  onClick={() => inspectEmployeeView(emp)}
+                  className="btn-secondary"
+                  style={{ flex: 1, padding: '0.4rem', fontSize: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.25rem' }}
+                >
+                  <Eye size={12} /> View
+                </button>
+                <button
+                  onClick={() => {
+                    setSelectedEmployee(emp);
+                    setIsModalOpen(true);
+                  }}
+                  className="btn-secondary"
+                  style={{ flex: 1, padding: '0.4rem', fontSize: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.25rem' }}
+                >
+                  <Edit2 size={12} /> Edit
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        /* Table Mode */
+        <div className="table-container">
+          <table className="custom-table">
+            <thead>
               <tr>
-                <td colSpan={6} style={{ textAlign: 'center', padding: '3rem', color: '#888A83' }}>
-                  Loading employee profiles...
-                </td>
+                <th>Employee Details</th>
+                <th>Department & Role</th>
+                <th>Contact Info</th>
+                <th>Join Date</th>
+                <th>Status</th>
+                <th style={{ textAlign: 'right' }}>Actions</th>
               </tr>
-            ) : employees.length === 0 ? (
-              <tr>
-                <td colSpan={6} style={{ textAlign: 'center', padding: '3rem', color: '#888A83' }}>
-                  No employee profiles match your search filter.
-                </td>
-              </tr>
-            ) : (
-              employees.map((emp) => (
+            </thead>
+            <tbody>
+              {employees.map((emp) => (
                 <tr key={emp.id}>
                   <td>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
                       <img
                         src={emp.avatarUrl || 'https://api.dicebear.com/7.x/avataaars/svg?seed=User'}
                         alt="Avatar"
-                        style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover' }}
+                        style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid #E6E4DD' }}
                       />
                       <div>
                         <div style={{ fontWeight: '700', color: '#171816' }}>
@@ -193,7 +323,6 @@ export const EmployeeList = () => {
                         onClick={() => inspectEmployeeView(emp)}
                         className="btn-secondary"
                         style={{ padding: '0.35rem 0.625rem', fontSize: '0.75rem' }}
-                        title="Inspect Dashboard View"
                       >
                         <Eye size={14} /> View
                       </button>
@@ -205,18 +334,17 @@ export const EmployeeList = () => {
                         }}
                         className="btn-secondary"
                         style={{ padding: '0.35rem 0.625rem', fontSize: '0.75rem' }}
-                        title="Edit Employee"
                       >
                         <Edit2 size={14} /> Edit
                       </button>
                     </div>
                   </td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
 
       <EmployeeModal
         employee={selectedEmployee}
