@@ -1,5 +1,27 @@
 {
-  "dependencies": {
-    "firebase": "^12.18.0"
-  }
+  "name": "dayflow-hrms",
+  "version": "1.0.0",
+  "description": "Dayflow — Next-Generation Human Resource Management System (HRMS)",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "db:setup": "cd backend && npx prisma db push && npx prisma db seed",
+    "db:studio": "cd backend && npx prisma studio",
+    "test:api": "cd backend && node test_flow.js",
+    "build:frontend": "cd frontend && npm run build"
+  },
+  "keywords": [
+    "hrms",
+    "human-resources",
+    "employee-management",
+    "attendance",
+    "payroll",
+    "react",
+    "express",
+    "prisma"
+  ],
+  "author": "",
+  "license": "ISC"
 }
